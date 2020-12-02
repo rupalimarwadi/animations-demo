@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { style, trigger, transition, animate, state, keyframes, animation, useAnimation, query, animateChild, group } from '@angular/animations';
+import { style, trigger, transition, animate, state, keyframes, animation, useAnimation, query, stagger, animateChild, group } from '@angular/animations';
 import { bounceOutLeftAnimation, fade, slide, fadeInAnimation } from 'app/animations';
 
 @Component({
@@ -11,10 +11,13 @@ import { bounceOutLeftAnimation, fade, slide, fadeInAnimation } from 'app/animat
       transition(':enter', [
         group
           ([
-            animate(1000, style({ backgroundColor: 'red' })),
-            animate(2000, style({ transform: 'translateY(20px)'})),
-            // query('h1', [style({ transform: 'translateY(-20px)', opacity: 1 }), animate(1000)]),
-            // query('@todoAnimation', animateChild()),
+            // animate(1000, style({ backgroundColor: 'red' })),
+            // animate(2000, style({ transform: 'translateY(20px)'})),
+            query('h1', [style({ transform: 'translateY(-20px)', opacity: 1 }), animate(1000)]),
+            query('@todoAnimation', stagger(200, animateChild())),
+            // or query('.list-group-item', stagger(200, [
+            //   style({ opacity: 0, transform: 'translateX(-20px)' }), animate(1000)
+            // ])),
           ])
       ])
     ]),
@@ -31,7 +34,8 @@ import { bounceOutLeftAnimation, fade, slide, fadeInAnimation } from 'app/animat
         transition(':leave',
           [style({ backgroundColor: 'red' }), animate(1000), useAnimation(bounceOutLeftAnimation)]),
       ]
-    )]
+    )
+  ]
   // animations: [slide]
   // animations: [fade]
 })
