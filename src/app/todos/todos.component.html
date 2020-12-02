@@ -4,6 +4,6 @@
 
 <div *ngIf="items" class="list-group">
   <!-- @slide changed with fade -->
-  <button type="button"  @slide *ngFor="let item of items" (click)="removeItem(item)"
+  <button type="button" @todoAnimation *ngFor="let item of items" (click)="removeItem(item)"
     class="list-group-item">{{ item }}</button>
 </div>
