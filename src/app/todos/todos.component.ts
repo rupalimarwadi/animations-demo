@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { style, trigger, transition, animate, state, keyframes, animation, useAnimation, query, animateChild } from '@angular/animations';
+import { style, trigger, transition, animate, state, keyframes, animation, useAnimation, query, animateChild, group } from '@angular/animations';
 import { bounceOutLeftAnimation, fade, slide, fadeInAnimation } from 'app/animations';
 
 @Component({
@@ -8,12 +8,15 @@ import { bounceOutLeftAnimation, fade, slide, fadeInAnimation } from 'app/animat
   styleUrls: ['./todos.component.css'],
   animations: [
     trigger('todosAnimation', [
-      transition(':enter',
-        [
-          query('h1',
-            [style({ transform: 'translateY(-20px)', opacity: 1 }), animate(1000)]),
-          query('@todoAnimation', animateChild()),
-        ])
+      transition(':enter', [
+        group
+          ([
+            animate(1000, style({ backgroundColor: 'red' })),
+            animate(2000, style({ transform: 'translateY(20px)'})),
+            // query('h1', [style({ transform: 'translateY(-20px)', opacity: 1 }), animate(1000)]),
+            // query('@todoAnimation', animateChild()),
+          ])
+      ])
     ]),
     trigger('todoAnimation',
       [
