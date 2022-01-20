@@ -9,7 +9,8 @@ import { expandCollapse } from './zippy.component.animations';
 export class ZippyComponent {
   @Input('title') title: string;
   isExpanded: boolean;
-
+  
+ 
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
